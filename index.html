@@ -56,11 +56,13 @@
     }
 
     async function scanCode() {
+      const result = await liff.scanCode()
+      document.getElementById("scanCode").append(result.value)
     }
 
     function openWindow() {
       liff.openWindow({
-        url: "https://parattapon.com"
+        url: "https://parattapon.com",
         external : true
       })
     }
