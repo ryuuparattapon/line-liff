@@ -20,5 +20,32 @@
     const params = new URLSearchParams(queryString);
     document.getElementById("param").append(params.get("param"));
   </script>
+
+   <script src="https://static.line-scdn.net/liff/edge/versions/2.3.0/sdk.js"></script>
+   <script>
+     async function getUserProfile() {
+     const profile = await liff.getProfile()
+     document.getElementById("pictureUrl").src = profile.pictureUrl
+     document.getElementById("userId").append(profile.userId)
+     document.getElementById("statusMessage").append(profile.statusMessage)
+     document.getElementByID("displyName").append(profile.displayName)
+     }
+    
+    async function main() {
+    await liff.init({ liffId: "1654418974-lqAbgBOA" })
+    document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+    if (liff.isLoggedIn())
+    {
+    getEnvironment()
+    getUserProfile()
+    getContext()
+    getFriendship()
+    createUniversalLink()
+    } else {
+    liff.login()
+    }
+    }
+    main()
+   </script>
 </body>
 </html>
