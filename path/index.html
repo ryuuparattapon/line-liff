@@ -13,7 +13,6 @@
   <p id="userId"><b>userId:</b> </p>
   <p id="displayName"><b>displayName:</b> </p>
   <p id="statusMessage"><b>statusMessage:</b> </p>
-  <p id="decodedIDToken"><b>email:</b> </p>
   <script>
     // Query Params
     const queryString = decodeURIComponent(window.location.search);
@@ -28,7 +27,7 @@
      document.getElementById("pictureUrl").src = profile.pictureUrl
      document.getElementById("userId").append(profile.userId)
      document.getElementById("statusMessage").append(profile.statusMessage)
-     document.getElementByID("displyName").append(profile.displayName)
+     document.getElementByID("displayName").append(profile.displayName)
      }
     
     async function main() {
@@ -36,13 +35,9 @@
     document.getElementById("isLoggedIn").append(liff.isLoggedIn())
     if (liff.isLoggedIn())
     {
-    getEnvironment()
-    getUserProfile()
-    getContext()
-    getFriendship()
-    createUniversalLink()
+      getUserProfile()
     } else {
-    liff.login()
+      liff.login({ redirectUri: "https://ryuuparattapon.github.io/line-liff/path"})
     }
     }
     main()
